@@ -6,17 +6,20 @@
 //
 
 import UIKit
+import SnapKit
 
 public class PianoViewController: UIViewController {
   
-  lazy titleLabel: UILabel = {
+  lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "Piano"
-    label.fontSize = 20
-    label.color = .purple
+    label.font = UIFont.systemFont(ofSize: 20)
+    label.textColor = .purple
+    
+    return label
   }()
 
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
     
     self.view.addSubview(titleLabel)
