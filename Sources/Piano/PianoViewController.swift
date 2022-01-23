@@ -10,10 +10,16 @@ import SnapKit
 
 public class PianoViewController: UIViewController {
   
+  lazy var coverImage: UIImageView = {
+    let image = UIImageView(image: UIImage(named: "cover-piano", in: Bundle.module, compatibleWith: nil))
+    image.contentMode = .scaleAspectFill
+    return image
+  }()
+
   lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = "Piano"
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.boldSystemFont(ofSize: 30)
     label.textColor = .purple
     
     return label
@@ -21,15 +27,22 @@ public class PianoViewController: UIViewController {
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-    
-    self.view.addSubview(titleLabel)
-
+  
     layout()
   }
 
   func layout() {
+    self.view.addSubview(coverImage)
+    self.view.addSubview(titleLabel)
+
+    coverImage.snp.makeConstraints { make in
+      make.width.equalTo(300)
+      make.height.equalTo(225)
+      make.center.equalToSuperview()
+    }
     titleLabel.snp.makeConstraints { make in
-      make.center.equalTo(view.center)
+      make.top.equalTo(coverImage.snp.bottom).offset(30)
+      make.centerX.equalToSuperview()
     }
   }
 
